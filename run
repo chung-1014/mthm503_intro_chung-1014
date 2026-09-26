@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+
+set -e
+
+
+run_week() {
+  test_file=$1
+  if [ "$2" = "verbose" ]; then
+    pytest -v "$test_file"
+  else
+    pytest -v --tb=no "$test_file"
+  fi
+}
+
+
+case "$1" in
+
+    week1)
+        echo
+        echo "Running Week 1 tests..."
+        echo
+
+        run_week tests/test_week1.py $2
+
+        echo
+        echo "✓ All tests passed"
+        echo
+        echo "Running code quality checks..."
+        echo
+
+        flake8 src tests
+
+        echo
+        echo "✓ No linting issues found"
+        echo "✓ Week 1 complete"
+        echo "✓ Ready to commit and push"
+        ;;
+
+    week2)
+        echo
+        echo "Running Week 2 tests..."
+        echo
+
+        run_week tests/test_week2.py $2
+
+        echo
+        echo "✓ All tests passed"
+        echo
+        echo "Running code quality checks..."
+        echo
+
+        flake8 src tests
+
+        echo
+        echo "✓ No linting issues found"
+        echo "✓ Week 2 complete"
+        echo "✓ Ready to commit and push"
+        ;;
+
+    help)
+        echo
+        echo "Available commands:"
+        echo
+        echo "  ./run week1"
+        echo "      Run Week 1 tests and linting"
+        echo
+        echo "  ./run week2"
+        echo "      Run Week 2 tests and linting"
+        echo
+        echo "  ./run help"
+        echo "      Show this message"
+        echo
+        ;;
+    check)
+        python verify.py
+        ;;
+    *)
+        echo
+        echo "I don't recognise that command."
+        echo
+        echo "Try:"
+        echo "  ./run help"
+        echo
+        exit 1
+        ;;
+
+esac

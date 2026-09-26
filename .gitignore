@@ -1,0 +1,33 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.*env/
+venv/
+env/
+
+# Conda
+.conda/
+
+* Pytest
+.pytest_cache/
+
+# Coverage*.coverage
+htmlcov/
+
+# IDEs
+.vscode*
+.idea/
+
+# OS files
+.DS_Store
+
+# emacs noise
+*~
+\#*\#
+*.elc
+.\#*
+
+# compiled handouts
+*.html

@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: pyintro
+          environment-file: environment.yml
+          auto-activate-base: false
+
+      - name: Week 1 functionality
+        shell: bash -l {0}
+        run: |
+          echo "Running Week 1 tests..."
+          pytest -v tests/test_week1.py
+
+      - name: Week 2 functionality
+        shell: bash -l {0}
+        run: |
+          echo "Running Week 2 tests..."
+          pytest -v tests/test_week2.py
+
+      - name: Code quality suggestions (non-blocking)
+        continue-on-error: true
+        shell: bash -l {0}
+        run: |
+          echo "Running flake8..."
+          flake8 src tests
+
+      - name: Summary
+        if: success()
+        shell: bash -l {0}
+        run: |
+          echo ""
+          echo "✅ All required tests passed."
+          echo ""
+          echo "If you saw lint warnings above, treat them as suggestions"
+          echo "for improving code readability and consistency."
