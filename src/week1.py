@@ -17,7 +17,7 @@ def try_points(tries):
     >>> try_points(0)
     0
     """
-    pass
+    return tries * 5
 
 
 def conversion_points(conversions):
@@ -37,7 +37,7 @@ def conversion_points(conversions):
     >>> conversion_points(2)
     4
     """
-    pass
+    return conversions * 2
 
 
 def penalty_points(penalties):
@@ -57,7 +57,7 @@ def penalty_points(penalties):
     >>> penalty_points(4)
     12
     """
-    pass
+    return penalties * 3
 
 
 def drop_goal_points(drop_goals):
@@ -77,7 +77,7 @@ def drop_goal_points(drop_goals):
     >>> drop_goal_points(2)
     6
     """
-    pass
+    return drop_goals * 3
 
 
 def total_score(tries, conversions, penalties, drop_goals):
@@ -108,7 +108,7 @@ def total_score(tries, conversions, penalties, drop_goals):
     17
     HINT: use the various functions you have constructed before to develop a solution
     """
-    pass
+    return try_points(tries) + conversion_points(conversions) + penalty_points(penalties) + drop_goal_points(drop_goals)
 
 
 def is_valid_conversion_count(tries, conversions):
@@ -134,7 +134,7 @@ def is_valid_conversion_count(tries, conversions):
     >>> is_valid_conversion_count(3, 4)
     False
     """
-    pass
+    return conversions <= tries
 
 
 def result_message(team_name, score):
@@ -157,4 +157,4 @@ def result_message(team_name, score):
     'Exeter scored 24 points.'
     HINT: Use a so-called f-string
     """
-    pass
+    return f"{team_name} scored {score} points."
