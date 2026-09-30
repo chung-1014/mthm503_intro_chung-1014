@@ -24,7 +24,14 @@ def winner(match):
     'Draw'
     HINT: Consider using tuple unpacking
     """
-    pass
+    home_team, away_team, home_score, away_score = match
+    if home_score > away_score:
+        return home_team    
+    
+    if away_score > home_score:
+        return away_team
+    
+    return 'Draw'
 
 
 def average_score(scores):
@@ -42,7 +49,14 @@ def average_score(scores):
     30.0
     HINT: do this without using a pre-written average or mean function
     """
-    pass
+    total = 0
+    for score in scores:
+        total += score
+
+    return total / len(scores)
+
+    
+    
 
 
 def highest_score(scores):
@@ -60,7 +74,12 @@ def highest_score(scores):
     25
     HINT: Do this without using a pre-built max function
     """
-    pass
+    highest = scores[0]
+    for score in scores:
+        if score > highest:
+            highest = score
+
+    return highest
 
 
 def team_win_percentage(team):
@@ -87,7 +106,11 @@ def team_win_percentage(team):
     ... )
     80.0
     """
-    pass
+    team_wins = team["wins"]
+    team_losses = team["losses"]
+    total_games = team_wins + team_losses
+    team_win_percentage = (team_wins / total_games) * 100
+    return team_win_percentage
 
 
 def home_team_won(match):
@@ -118,8 +141,7 @@ def home_team_won(match):
     ... )
     True
     """
-    pass
-
+    return match["home_score"] > match["away_score"]
 
 def total_points_for(matches):
     """
@@ -141,7 +163,10 @@ def total_points_for(matches):
     ... )
     42
     """
-    pass
+    total_points = 0
+    for match in matches:
+        total_points += match["points_for"]
+    return total_points
 
 
 def count_wins(matches):
@@ -171,4 +196,8 @@ def count_wins(matches):
     ... )
     1
     """
-    pass
+    wins = 0
+    for match in matches:
+        if match["points_for"] > match["points_against"]:
+            wins += 1
+    return wins
