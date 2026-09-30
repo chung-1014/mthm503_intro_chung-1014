@@ -142,7 +142,10 @@ def home_team_won(match):
     ... )
     True
     """
-    return match["home_score"] > match["away_score"]
+    if match["home_score"] > match["away_score"]:
+        return True
+    else:
+        return False
 
 def total_points_for(matches):
     """
