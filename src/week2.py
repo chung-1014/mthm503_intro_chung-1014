@@ -28,10 +28,11 @@ def winner(match):
     if home_score > away_score:
         return home_team    
     
-    if away_score > home_score:
+    elif away_score > home_score:
         return away_team
     
-    return 'Draw'
+    elif home_score == away_score:
+        return "Draw"
 
 
 def average_score(scores):
