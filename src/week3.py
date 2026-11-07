@@ -85,8 +85,7 @@ def sort_by_column(df, column, ascending=True):
     pandas.DataFrame
         The sorted DataFrame.
     """
-    return df[column].sort_value()
-
+    return df.sort_values(by=column, ascending=ascending)
 
 def unique_values(df, column):
     """
@@ -105,7 +104,7 @@ def unique_values(df, column):
     numpy.ndarray
         Array of unique values.
     """
-    pass
+    return df[column].unique()
 
 
 def frequencies_by_group(df, cat_col):
@@ -125,7 +124,7 @@ def frequencies_by_group(df, cat_col):
     pandas.Series
         Frequency counts indexed by category.
     """
-    pass
+    return df[cat_col].value_counts()
 
 
 def mean_by_group(df, value_col, group_col):
@@ -148,7 +147,7 @@ def mean_by_group(df, value_col, group_col):
     pandas.Series
         Group means indexed by group.
     """
-    pass
+    return df.groupby(group_col)[value_col].mean()
 
 
 def add_ratio_column(df, numerator, denominator, new_col):
@@ -175,7 +174,7 @@ def add_ratio_column(df, numerator, denominator, new_col):
     pandas.DataFrame
         A new DataFrame including the ratio column.
     """
-    pass
+    return df.assign(**{new_col: df[numerator] / df[denominator]})
 
 
 def drop_missing(df):
@@ -193,7 +192,7 @@ def drop_missing(df):
     pandas.DataFrame
         DataFrame with missing-value rows removed.
     """
-    pass
+    return df.dropna()
 
 
 def fill_missing(df, value):
@@ -214,4 +213,4 @@ def fill_missing(df, value):
     pandas.DataFrame
         DataFrame with missing values filled.
     """
-    pass
+    return df.fillna(value, inplace=True)
